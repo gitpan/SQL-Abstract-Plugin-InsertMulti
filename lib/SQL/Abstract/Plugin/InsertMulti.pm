@@ -3,7 +3,7 @@ package SQL::Abstract::Plugin::InsertMulti;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Sub::Exporter -setup => +{
     into    => 'SQL::Abstract',
@@ -228,9 +228,11 @@ SQL::Abstract::Plugin::InsertMulti - add mysql bulk insert supports for SQL::Abs
 
 =head1 DESCRIPTION
 
-SQL::Abstract::Plugin::InsertMulti is bulk insert supports. Declare 'use SQL::Abstract::Plugin::InsertMulti;' with 'use SQL::Abstract;',
+SQL::Abstract::Plugin::InsertMulti is enable bulk insert support for L<SQL::Abstract>. Declare 'use SQL::Abstract::Plugin::InsertMulti;' with 'use SQL::Abstract;',
 exporting insert_multi() and update_multi() methods to L<SQL::Abstract> namespace from SQL::Abstract::Plugin::InsertMulti.
 Plugin system is depends on 'into' options of L<Sub::Exporter>.
+
+Notice: please check your mysql_allow_packet parameter using this module.
 
 =head1 METHODS
 
