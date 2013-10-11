@@ -3,8 +3,9 @@ package SQL::Abstract::Plugin::InsertMulti;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
+use Carp ();
 use Sub::Exporter -setup => +{
     into    => 'SQL::Abstract',
     exports => [
@@ -78,20 +79,6 @@ sub _insert_multi_values {
             $self->_SWITCH_refkind(
                 $v,
                 {
-                    ARRAYREF => sub {
-                        if ( $self->{array_datatypes} )
-                        {    # if array datatype are activated
-                            push @values, '?';
-                            push @all_bind, $self->_bindtype( $column, $v );
-                        }
-                        else {    # else literal SQL with bind
-                            my ( $sql, @bind ) = @$v;
-
-                            # $self->_assert_bindval_matches_bindtype(@bind);
-                            push @values,   $sql;
-                            push @all_bind, @bind;
-                        }
-                    },
                     ARRAYREFREF => sub {    # literal SQL with bind
                         my ( $sql, @bind ) = @${$v};
 
@@ -132,17 +119,6 @@ sub _insert_multi_values {
             $self->_SWITCH_refkind(
                 $v,
                 {
-                    ARRAYREF => sub {
-                        if ( $self->{array_datatypes} ) {    # array datatype
-                            push @set, "$label = ?";
-                            push @all_bind, $self->_bindtype( $k, $v );
-                        }
-                        else {    # literal SQL with bind
-                            my ( $sql, @bind ) = @$v;
-                            push @set,      "$label = $sql";
-                            push @all_bind, @bind;
-                        }
-                    },
                     ARRAYREFREF => sub {    # literal SQL with bind
                         my ( $sql, @bind ) = @${$v};
                         push @set,      "$label = $sql";

@@ -3,12 +3,14 @@ abstract: 'add mysql bulk insert supports for SQL::Abstract'
 author:
   - 'Toru Yamaguchi <zigorou@cpan.org>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
-  Test::More: 0
+  Test::Exception: 0
+  Test::More: 0.98
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
-distribution_type: module
-generated_by: 'Module::Install version 0.91'
+  CPAN::Meta: 0
+  CPAN::Meta::Prereqs: 0
+  Module::Build: 0.38
+dynamic_config: 0
+generated_by: 'Minilla/v0.7.5, CPAN::Meta::Converter version 2.130870'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,13 +18,24 @@ meta-spec:
 name: SQL-Abstract-Plugin-InsertMulti
 no_index:
   directory:
-    - inc
     - t
     - xt
+    - inc
+    - share
+    - eg
+    - examples
+    - author
+    - builder
+provides:
+  SQL::Abstract::Plugin::InsertMulti:
+    file: lib/SQL/Abstract/Plugin/InsertMulti.pm
+    version: 0.04
 requires:
-  Filter::Util::Call: 0
   SQL::Abstract: 1.6
   Sub::Exporter: 0
+  perl: 5.008001
 resources:
-  license: http://dev.perl.org/licenses/
-version: 0.03
+  bugtracker: https://github.com/zigorou/p5-sql-abstract-plugin-insertmulti/issues
+  homepage: https://github.com/zigorou/p5-sql-abstract-plugin-insertmulti
+  repository: git://github.com/zigorou/p5-sql-abstract-plugin-insertmulti.git
+version: 0.04
